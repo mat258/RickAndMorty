@@ -11,13 +11,13 @@ import SwiftUI
 @MainActor
 class CharacterRowViewModel: ObservableObject {
     let character: Character
-    @ObservedObject var favorites: Favorite
+    @ObservedObject var favorites: FavoriteProvider
     
     var isFavorite: Bool {
         favorites.contains(character)
     }
     
-    init(character: Character, favorites: Favorite) {
+    init(character: Character, favorites: FavoriteProvider) {
         self.favorites = favorites
         self.character = character
     }

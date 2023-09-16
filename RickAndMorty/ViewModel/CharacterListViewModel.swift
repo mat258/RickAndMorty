@@ -21,7 +21,7 @@ class CharacterListViewModel: ObservableObject {
     @Published var characters: [Character] = []
     @Published var loadingState: LoadingState?
     @Published var showingAlert: ShowAlertState?
-    @Published var favorites = Favorite()
+    @Published var favorites = FavoriteProvider()
     @Published var selectedCharacter: Character?
     
     let repository: CharacterRepository

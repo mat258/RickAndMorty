@@ -54,7 +54,7 @@ struct CharacterDetailView: View {
 struct CharacterDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let character = Character(id: 1, name: "Rick", status: "Earth", species: "Human", gender: "Male", origin: Location(url: "https://rickandmortyapi.com/api/location/3"), location: Location(url: "https://rickandmortyapi.com/api/location/3"), image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")
-        let favorites = Favorite()
+        let favorites = FavoriteProvider()
         let viewModel = CharacterDetailViewModel(character: character, favorites: favorites)
         CharacterDetailView(viewModel: viewModel)
     }

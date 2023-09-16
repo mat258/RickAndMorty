@@ -1,5 +1,5 @@
 //
-//  Favorite.swift
+//  FavoriteProvider.swift
 //  RickAndMorty
 //
 //  Created by Matias Valdes on 14/09/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Favorite: ObservableObject {
+class FavoriteProvider: ObservableObject {
     @Published var characters: Set<Int> = []
 
     func contains(_ character: Character?) -> Bool {

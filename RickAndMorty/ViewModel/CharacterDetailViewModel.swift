@@ -15,7 +15,7 @@ class CharacterDetailViewModel: ObservableObject {
     var isLoading = false
     @Published var location: LocationDetail?
     @Published var showingAlert: Bool = false
-    @Published var favorites: Favorite
+    @Published var favorites: FavoriteProvider
     
     @Published var name: String = ""
     @Published var type: String = ""
@@ -27,7 +27,7 @@ class CharacterDetailViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(repository: LocationRepository = LocationRepositoryProvider.createRepository(), character: Character, favorites: Favorite) {
+    init(repository: LocationRepository = LocationRepositoryProvider.createRepository(), character: Character, favorites: FavoriteProvider) {
         self.favorites = favorites
         self.character = character
         self.repository = repository

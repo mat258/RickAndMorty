@@ -12,7 +12,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
 
     @MainActor func testDetailViewModelCharacter() async {
         let repository = LocationStubRepository(result: LocationDetail(id: 1, name: "Earth", type: "Planet", dimension: "C-137"))
-        let sut = CharacterDetailViewModel(repository: repository,character: DemoData.rickCharacter, favorites: Favorite())
+        let sut = CharacterDetailViewModel(repository: repository,character: DemoData.rickCharacter, favorites: FavoriteProvider())
         await sut.fetchLastLocation()
         
         XCTAssertFalse(sut.name.isEmpty)
