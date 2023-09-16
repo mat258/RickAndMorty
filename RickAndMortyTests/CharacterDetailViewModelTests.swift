@@ -9,8 +9,8 @@ import XCTest
 @testable import RickAndMorty
 
 final class CharacterDetailViewModelTests: XCTestCase {
-
-    @MainActor func testDetailViewModelCharacter() async {
+    
+    @MainActor func testFetchLastLocation() async {
         let repository = LocationStubRepository(result: LocationDetail(id: 1, name: "Earth", type: "Planet", dimension: "C-137"))
         let sut = CharacterDetailViewModel(repository: repository,character: DemoData.rickCharacter, favorites: FavoriteProvider())
         await sut.fetchLastLocation()
@@ -18,6 +18,26 @@ final class CharacterDetailViewModelTests: XCTestCase {
         XCTAssertFalse(sut.name.isEmpty)
         XCTAssertFalse(sut.type.isEmpty)
         XCTAssertFalse(sut.dimension.isEmpty)
+    }
+    
+    @MainActor func testToggleFavoriteAdd() async {
+        let repository = LocationStubRepository(result: LocationDetail(id: 1, name: "Earth", type: "Planet", dimension: "C-137"))
+        let sut = CharacterDetailViewModel(repository: repository,character: DemoData.rickCharacter, favorites: FavoriteProvider())
+        await sut.fetchLastLocation()
+        XCTAssertFalse(sut.favorites.contains(DemoData.rickCharacter))
+        sut.toggleFavorite()
+        XCTAssertTrue(sut.favorites.contains(DemoData.rickCharacter))
+    }
+    
+    @MainActor func testToggleFavoriteRemove() async {
+        let repository = LocationStubRepository(result: LocationDetail(id: 1, name: "Earth", type: "Planet", dimension: "C-137"))
+        let sut = CharacterDetailViewModel(repository: repository,character: DemoData.rickCharacter, favorites: FavoriteProvider())
+        await sut.fetchLastLocation()
+        XCTAssertFalse(sut.favorites.contains(DemoData.rickCharacter))
+        sut.toggleFavorite()
+        XCTAssertTrue(sut.favorites.contains(DemoData.rickCharacter))
+        sut.toggleFavorite()
+        XCTAssertFalse(sut.favorites.contains(DemoData.rickCharacter))
     }
 }
 
