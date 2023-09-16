@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CharacterListView: View {
     @ObservedObject var viewModel: CharacterListViewModel
-    @State private var character: Character?
     
     var body: some View {
         NavigationSplitView {
@@ -43,7 +42,7 @@ struct CharacterListView: View {
                 }
             
         } detail: {
-            if let selectedCharacter = character {
+            if let selectedCharacter = viewModel.selectedCharacter {
                 CharacterDetailView(viewModel: CharacterDetailViewModel(character: selectedCharacter, favorites: viewModel.favorites))
             }
         }
@@ -55,7 +54,7 @@ struct CharacterListView: View {
     }
     
     private var list: some View {
-        List(selection: $character) {
+        List(selection: $viewModel.selectedCharacter) {
             ForEach(viewModel.characters.indices, id: \.self) { characterIndex in
                 let character = viewModel.characters[characterIndex]
                 NavigationLink(value: character) {
