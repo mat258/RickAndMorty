@@ -8,7 +8,7 @@
 import Foundation
 
 class FavoriteProvider: ObservableObject {
-    @Published var characters: Set<Int> = []
+    @Published private var characters: Set<Int> = []
 
     func contains(_ character: Character?) -> Bool {
         guard let character = character else { return false }

@@ -15,7 +15,7 @@ class LocationAPIRepository: LocationRepository {
         
     private let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
     
-    var didFetchAll = false
+    private(set) var didFetchAll = false
     
     func fetchLocation(withURLSting urlString: String?) async throws -> LocationDetail {
         

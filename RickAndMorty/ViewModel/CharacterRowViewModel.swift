@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 class CharacterRowViewModel: ObservableObject {
     let character: Character
-    @ObservedObject var favorites: FavoriteProvider
+    @ObservedObject private var favorites: FavoriteProvider
     
     var isFavorite: Bool {
         favorites.contains(character)

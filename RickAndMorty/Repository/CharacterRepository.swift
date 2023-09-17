@@ -22,7 +22,7 @@ class CharacterAPIRepository: CharacterRepository {
     
     private let urlSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
     
-    var didFetchAll = false
+    private(set) var didFetchAll = false
     
     func fetchResult(forPage page: Int) async throws {
         

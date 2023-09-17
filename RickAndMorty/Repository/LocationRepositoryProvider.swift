@@ -18,7 +18,6 @@ struct LocationRepositoryProvider {
 }
 
 class LocationMockRepository: LocationRepository {
-    var results: [Character] = [Character]()
     
     func fetchLocation(withURLSting urlString: String?) async throws -> LocationDetail {
         return LocationDetail(id: 1, name: "Earth", type: "city", dimension: "C-137")

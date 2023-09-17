@@ -18,13 +18,13 @@ class CharacterListViewModel: ObservableObject {
         case informative
     }
     
-    @Published var characters: [Character] = []
-    @Published var loadingState: LoadingState?
-    @Published var showingAlert: ShowAlertState?
-    @Published var favorites = FavoriteProvider()
+    @Published private(set) var characters: [Character] = []
+    @Published private(set) var loadingState: LoadingState?
+    @Published private(set) var showingAlert: ShowAlertState?
+    @Published private(set) var favorites = FavoriteProvider()
     @Published var selectedCharacter: Character?
     
-    let repository: CharacterRepository
+    private let repository: CharacterRepository
     private var resultsCurrentPage = 1
     private static let fetchNewPageThreshold = 2
     

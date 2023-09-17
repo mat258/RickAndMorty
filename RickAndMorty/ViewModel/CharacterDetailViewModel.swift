@@ -10,22 +10,22 @@ import Combine
 
 @MainActor
 class CharacterDetailViewModel: ObservableObject {
-    let character: Character
-    let repository: LocationRepository
-    var isLoading = false
-    @Published var location: LocationDetail?
-    @Published var showingAlert: Bool = false
-    @Published var favorites: FavoriteProvider
+    private let character: Character
+    private let repository: LocationRepository
+    private(set) var isLoading = false
+    private var cancellables = Set<AnyCancellable>()
     
-    @Published var name: String = ""
-    @Published var type: String = ""
-    @Published var dimension: String = ""
+    @Published private(set) var location: LocationDetail?
+    @Published private(set) var showingAlert: Bool = false
+    @Published private(set) var favorites: FavoriteProvider
+    
+    @Published private(set) var name: String = ""
+    @Published private(set) var type: String = ""
+    @Published private(set) var dimension: String = ""
     
     var favoriteButtonLabel: String {
         return favorites.contains(character) ? "Remove from Favorites" : "Add to Favorites"
     }
-    
-    private var cancellables = Set<AnyCancellable>()
     
     init(repository: LocationRepository = LocationRepositoryProvider.createRepository(), character: Character, favorites: FavoriteProvider) {
         self.favorites = favorites
