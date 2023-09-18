@@ -24,4 +24,8 @@ class FavoriteProvider: ObservableObject {
         guard let character = character else { return }
         characters.remove(character.id)
     }
+    
+    func amount() -> Int {
+        return characters.count
+    }
 }

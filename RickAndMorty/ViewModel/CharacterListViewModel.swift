@@ -29,6 +29,9 @@ class CharacterListViewModel: ObservableObject {
     private let repository: CharacterRepository
     private var resultsCurrentPage = 1
     private static let fetchNewPageThreshold = 2
+    var favoriteAmountDisplay: String {
+        return "Favorites: \(favorites.amount())"
+    }
     
     init(repository: CharacterRepository = CharacterRepositoryProvider.createRepository()) {
         self.repository = repository

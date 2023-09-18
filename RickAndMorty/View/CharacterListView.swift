@@ -55,16 +55,23 @@ struct CharacterListView: View {
     
     private var list: some View {
         List(selection: $viewModel.selectedCharacter) {
-            ForEach(viewModel.characters.indices, id: \.self) { characterIndex in
-                let character = viewModel.characters[characterIndex]
-                NavigationLink(value: character) {
-                    CharacterRow(viewModel: CharacterRowViewModel(character: character, favorites: viewModel.favorites))
-                }
-                .accessibilityIdentifier("characterCell-\(characterIndex)")
-                .onAppear {
-                    Task {
-                        await viewModel.listViewShownWithIndex(characterIndex)
+            Section {
+                ForEach(viewModel.characters.indices, id: \.self) { characterIndex in
+                    let character = viewModel.characters[characterIndex]
+                    NavigationLink(value: character) {
+                        CharacterRow(viewModel: CharacterRowViewModel(character: character, favorites: viewModel.favorites))
                     }
+                    .accessibilityIdentifier("characterCell-\(characterIndex)")
+                    .onAppear {
+                        Task {
+                            await viewModel.listViewShownWithIndex(characterIndex)
+                        }
+                    }
+                }
+            } header: {
+                HStack{
+                    Spacer()
+                    Text(viewModel.favoriteAmountDisplay)
                 }
             }
             
@@ -78,6 +85,7 @@ struct CharacterListView: View {
                 .padding()
             }
         }
+        .listStyle(.inset)
         .accessibilityIdentifier("characterList")
     }
 }

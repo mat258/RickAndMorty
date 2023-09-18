@@ -16,6 +16,7 @@ struct CharacterDetailView: View {
             Text(viewModel.name)
                 .accessibilityIdentifier("name")
                 .font(.largeTitle)
+                .multilineTextAlignment(.center)
             Spacer()
             Text(viewModel.type)
                 .accessibilityIdentifier("type")
@@ -34,7 +35,7 @@ struct CharacterDetailView: View {
             ZStack {
                 if viewModel.isLoading {
                     ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
+                        .progressViewStyle(.circular)
                 }
             }
         )
