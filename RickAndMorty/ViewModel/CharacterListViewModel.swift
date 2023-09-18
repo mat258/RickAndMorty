@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 class CharacterListViewModel: ObservableObject {
@@ -23,6 +24,7 @@ class CharacterListViewModel: ObservableObject {
     @Published private(set) var showingAlert: ShowAlertState?
     @Published private(set) var favorites = FavoriteProvider()
     @Published var selectedCharacter: Character?
+    private var cancellables = Set<AnyCancellable>()
     
     private let repository: CharacterRepository
     private var resultsCurrentPage = 1
@@ -30,6 +32,11 @@ class CharacterListViewModel: ObservableObject {
     
     init(repository: CharacterRepository = CharacterRepositoryProvider.createRepository()) {
         self.repository = repository
+        
+        favorites.objectWillChange.sink { _ in
+            self.objectWillChange.send()
+        }
+        .store(in: &cancellables)
     }
     
     func retryTapped() async {
