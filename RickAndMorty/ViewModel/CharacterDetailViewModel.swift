@@ -44,8 +44,8 @@ class CharacterDetailViewModel: ObservableObject {
             self.isLoading = true
             location = try await repository.fetchLocation(withURLSting: character.location?.url)
             name = location?.name ?? ""
-            type = "type: \(location?.type ?? "")"
-            dimension = "dimension: \(location?.type ?? "")"
+            type = "Type: \(location?.type ?? "")"
+            dimension = "Dimension: \(location?.dimension ?? "")"
             self.isLoading = false
         } catch {
             showingAlert = true
