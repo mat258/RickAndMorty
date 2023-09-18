@@ -38,6 +38,14 @@ final class RickAndMortyUITests: XCTestCase {
         app.navigationBars.firstMatch.buttons["Characters"].tap()
         XCTAssertTrue(firstCell.images["favorite"].waitForNonExistence(timeout: 2))
     }
+    
+    func testDetailText() {
+        let firstCell = app.collectionViews["characterList"].buttons["characterCell-0"]
+        firstCell.tap()
+        XCTAssertTrue(app.staticTexts["name"].label == "Earth")
+        XCTAssertTrue(app.staticTexts["type"].label == "Type: city")
+        XCTAssertTrue(app.staticTexts["dimension"].label == "Dimension: C-137")
+    }
 }
 
 

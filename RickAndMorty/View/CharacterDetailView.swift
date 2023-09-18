@@ -14,10 +14,13 @@ struct CharacterDetailView: View {
         VStack(spacing: 10) {
             Spacer()
             Text(viewModel.name)
+                .accessibilityIdentifier("name")
                 .font(.largeTitle)
             Spacer()
             Text(viewModel.type)
+                .accessibilityIdentifier("type")
             Text(viewModel.dimension)
+                .accessibilityIdentifier("dimension")
             Spacer()
             
             Button(viewModel.favoriteButtonLabel) {
